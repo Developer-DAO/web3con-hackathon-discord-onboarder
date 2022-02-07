@@ -1,5 +1,2 @@
-Content-Type,term,description,locale,source
-application/json,blockchain,"A publicly-accessible digital ledger used to store and transfer information without the need for a central authority. Blockchains are the core technology on which cryptocurrency protocols like Bitcoin and Ethereum are built.",en,someone
-application/json,HODL,"An acronym for hold on for dear life",en,someone
-application/json,FUD,"An acronym for fear, uncertainty, doom",en,someone
-application/json,FOMO,"An acronym for fear of missing out",en,someone
+discord_handle
+abc123
