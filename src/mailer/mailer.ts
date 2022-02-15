@@ -1,5 +1,13 @@
 import nodemailer from "nodemailer";
 import { MailMeta } from "../types/mailer-types";
+import winston from "winston";
+
+const LOGGER = winston.createLogger({
+    transports: [
+      new winston.transports.Console(),
+      new winston.transports.File({ filename: './logs/service.log' })
+    ]
+  });
 
 const mail = async (options: MailMeta) => {
 
@@ -36,11 +44,11 @@ const mail = async (options: MailMeta) => {
 
     transporter.sendMail(mailOptions, (error: any, info: any) => {
         if (error) {
-            console.log(`[error sending mail] to=${mailOptions.to} error=${error}`)
+            LOGGER.error(`[Error sending mail] from=${mailOptions.from}, to=${mailOptions.to}, error=${error}`)
         } else {
-            console.log(`Email sent: to=${mailOptions.to}  info=${info.response}`);
+            LOGGER.info(`[Email sent] from=${mailOptions.from}, to=${mailOptions.to},  info=${info.response}`);
             //Uncomment for testing
-            //console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+            //LOGGER.info(`Preview URL: ${nodemailer.getTestMessageUrl(info)}`);
         }
     });
 }

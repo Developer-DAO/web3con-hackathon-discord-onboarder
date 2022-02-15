@@ -22,14 +22,14 @@ const createMailMetaFromRow = (row: any) => {
   return {
     to: row["email"],
     subject: "Web3Con 2022 Hackathon Discord invite",
-    message: `Hi ${row["discord_handle"]}, thank you for joining the Web3Con 2022 hackathon.  Please use the link below to join the hackathon discord server`,
-    inviteLinkHTML: `<h2>Discord invite link: </h2><p>${DISCORD_INVITE}</p>`
+    message: `Hi ${row["discord_handle"]}, thank you for joining the Web3Con 2022 hackathon!  Please use the link below to join the Web3Con discord server:`,
+    inviteLinkHTML: `<div><a href="${DISCORD_INVITE}">${DISCORD_INVITE}</a></div>`
   } as MailMeta;
 }
 
 const mailParticipants = async (mailingList: MailMeta[]) => {
   for (let i = 0; i < mailingList.length; i++) {
-    await mail(mailingList[i])
+    await mail(mailingList[i]);
   }
 }
 
@@ -39,8 +39,6 @@ const readAndProcessDataFromCSV = async () => {
   let mailingList: any[] = [];
 
   const stream = createReadStream('resources/hackers.csv');
-
-  // The headers of the CSV act as our keys for the tags we attach to the data we upload
   let headers = [] as string[];
 
   parseStream(stream, { headers: true, ignoreEmpty: true })
@@ -64,12 +62,11 @@ const readAndProcessDataFromCSV = async () => {
       LOGGER.info(`[CSV processing completed] Parsed ${rowCount} rows`);
 
       if (dry_run === "true") {
-        console.log("dry run complete - check the service.log to ")
+        LOGGER.info("dry run complete - check the service.log to view the results ")
       } else {
-        console.log("--- Begin mailing process ---")
+        LOGGER.info("--- Begin Mailing Process ---")
         mailParticipants(mailingList);
       }
-
     });
 }
 
