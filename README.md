@@ -20,7 +20,7 @@ A simple node.js script to onboard hackathon registrants onto discord via CSV.
 
 ### Content source
 
-The script uses the `resources/sample.csv` as the source of truth when preforming preforming discord onboardings. 
+The script uses the `resources/hackers.csv` as the source of truth when preforming preforming discord onboardings. 
 
 ### Command Line Options
 
@@ -33,7 +33,7 @@ The script runs entirely through the command line and can be run with the follow
 ### How to run the script
 
 0. Open up a terminal and traverse to the project root i.e. `cd some/path/to/web3con-hackathon-discord-onboarder`
-1. Replace the content of `resources/sample.csv` with the data of your liking,
+1. Replace the content of `resources/hackers.csv` with the data of your liking,
 2. Run `ts-node onboarder.ts -d true` to run the script in `dryrun` mode to observe how your requests will look like without actually uploading.
 3. Observe the `logs/service.log` file to see if your data looks like you expect it to
 4. Assuming you are satisfied with your dryrun and/or testweave uploads you can now upload to the Arweave mainnet via `ts-node onboarder.ts -d false -t false`
