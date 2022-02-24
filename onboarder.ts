@@ -21,9 +21,22 @@ const dry_run = program.parse().opts().dryrun;
 const createMailMetaFromRow = (row: any) => {
   return {
     to: row["email"],
-    subject: "Web3Con 2022 Hackathon Discord invite",
-    message: `Hi ${row["discord_handle"]}, thank you for joining the Web3Con 2022 hackathon!  Please use the link below to join the Web3Con discord server:`,
-    inviteLinkHTML: `<div><a href="${DISCORD_INVITE}">${DISCORD_INVITE}</a></div>`
+    subject: "web3con 2022 Hackathon Discord Invite",
+    inviteLinkHTML: `<div>
+                        <p>Hi ${row["discord_handle"]}, thank you for registering for the web3con 2022 hackathon!  Please use the link below to join the web3con discord server:</p>
+                     </div>
+                     <div>
+                        <a href="${DISCORD_INVITE}">${DISCORD_INVITE}</a>
+                     </div>
+                     <div>
+                        <p>If you're experiencing issues joining the server please reply to this email and we'll assist you to as soon as we possibly can.<p/>
+                     </div>
+                     <div>
+                        <div>
+                          <p>Happy hacking!</p>
+                        </div>
+                        <p>-web3con team<p/>
+                     </div>`
   } as MailMeta;
 }
 

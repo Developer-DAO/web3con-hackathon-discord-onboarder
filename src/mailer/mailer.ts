@@ -24,13 +24,19 @@ const mail = async (options: MailMeta) => {
     //     },
     // });
 
-    const FROM_ADDRESS = "aRealEmail@gmail.com";
+    const FROM_ADDRESS = process.env.WEB3CON_EMAIL_USERNAME;
 
+    /**
+     * Note: To use the mailer locally on your machine with a gmail account, you must first enable the "less secure app" toggle in your account
+     * by visiting https://myaccount.google.com/lesssecureapps and flipping the switch.  This technique is only recommended for users running this script
+     * locally on their machines and is not intended to be run in a production environment
+     */
     const transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: "smtp.gmail.com",
+        port: 587,
         auth: {
           user: FROM_ADDRESS,
-          pass: process.env.EMAIL_PASSWORD
+          pass: process.env.WEB3CON_EMAIL_PASSWORD
         }
       });
 
@@ -38,7 +44,6 @@ const mail = async (options: MailMeta) => {
         from: FROM_ADDRESS,
         to: options.to,
         subject: options.subject,
-        text: options.message,
         html: options.inviteLinkHTML
     };
 
