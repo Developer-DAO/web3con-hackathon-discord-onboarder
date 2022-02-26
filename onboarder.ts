@@ -39,10 +39,12 @@ const createMailMetaFromRow = (row: any) => {
                      </div>`
   } as MailMeta;
 }
+const delay = (ms: number | undefined) => new Promise(res => setTimeout(res, ms));
 
 const mailParticipants = async (mailingList: MailMeta[]) => {
   for (let i = 0; i < mailingList.length; i++) {
     await mail(mailingList[i]);
+    await delay(5000);
   }
 }
 
